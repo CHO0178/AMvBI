@@ -24,6 +24,8 @@ GPIO (CH41)
 void cviceni1Setup();
 void cviceni2Setup();
 void cviceni1Loop();
+void cviceni2Loop();
+void cviceni3Loop();
 
 int main(void)
 {
