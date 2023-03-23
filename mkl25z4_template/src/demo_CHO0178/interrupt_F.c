@@ -1,11 +1,4 @@
-/*
- * Name: main.c
- * Author: You
- *
- * This is a stub. Write your code here.
- *
- */
-#include <demo_STA048/CHO0178/littleHelper.h>
+#include "demo_CHO0178/littleHelper.h"
 #include "MKL25Z4.h"
 #include "wdog.h"
 #include "led.h"
