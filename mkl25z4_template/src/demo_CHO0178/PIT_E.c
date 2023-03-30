@@ -1,6 +1,6 @@
 /*
 
-PIT
+PIT(ch32)
 	MCR
 		MDIS
 		FRZ				freeze in debug (1-allow freeze)
@@ -22,19 +22,19 @@ int main(void)
 	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
 	//(0) inicializujte diody
 
-	//(0) nastavte zastavení v debug
+	//(0) nastavte zastaveni v debug
 
 	//(0) nastavte modulo pro obnovovani na 1.5s (LDVAL, busFrequency 24MHz)
-	;
+
 	//(0) povolte casovac PIT a generovani interruptu (TCTRL)
 
 	//(0) povolte v prijem preruseni v periferii NVIC
 
 
-	//(1) nastavte druhý kanál na periodu blikání diodou 2s
+	//(1) nastavte druhy kanal na periodu blikani diodou 2s
 
 
-	//(2) nastavte èas systicku na 0.5s
+	//(2) nastavte cas systicku na 0.5s
 
 
 
@@ -54,5 +54,5 @@ int main(void)
 
 
 
-//(2) vytvoøte handler pro pøerušení ze systicku a pøepínejte ledku 2
+//(2) vytvorte handler pro preruseni ze systicku a prepinejte ledku 2
 
