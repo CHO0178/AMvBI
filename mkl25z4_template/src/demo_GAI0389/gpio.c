@@ -19,6 +19,7 @@ int main(void)
 {
 	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
 
+	int count;
 	//the IOMASK_J9 bit of the GPIO_J9->PDDR register is already 0 (input)
 	PORT_J9->PCR[IOIND_J9] = PORT_PCR_MUX(PORT_PCR_MUX_VAL_GPIO);
 
