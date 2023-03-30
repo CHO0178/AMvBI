@@ -16,8 +16,9 @@ int main(void)
 	// povol prijem preruseni pro port A a nastav prioritu na 2
 	NVIC_SetPriority(PORTA_IRQn,2);
 	NVIC_EnableIRQ(PORTA_IRQn);
-	// povol generovani preruseni v periferii portA pro sestupnou i n�stupnou hranu
+	// povol generovani preruseni v periferii portA pro sestupnou i nastupnou hranu
 	changeMultipleBitInRegister(PORTA->PCR[4],11u,PORT_PCR_IRQC_MASK,PORT_PCR_IRQC_SHIFT);
+	// alternative in initial state(IRQC = 0): PORTA->PCR[4] |= 0b1011 << PORT_PCR_IRQC_SHIFT;
 
 	while (1) {
 		wdog_refresh();
