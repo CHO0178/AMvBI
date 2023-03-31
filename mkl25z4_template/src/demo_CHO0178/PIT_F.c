@@ -22,7 +22,8 @@ int main(void)
 	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
 	//(0) inicializujte diody
 	led_init();
-	//(0) nastavte zastavení PIT v debug rezimu a povolte periferii PIT
+	//(0) nastavte zastaveni PIT v debug rezimu a povolte periferii PIT
+	PIT->MCR &= ~PIT_MCR_MDIS_MASK;  //!!!!!
 	PIT->MCR = PIT_MCR_FRZ_MASK;
 	//(0) nastavte modulo pro obnovovani na 1.5s (LDVAL, busFrequency 24MHz)
 	PIT->CHANNEL[0].LDVAL = 36000000ul;
@@ -32,11 +33,11 @@ int main(void)
 	//(0) povolte v prijem preruseni v periferii NVIC
 	NVIC_EnableIRQ(PIT_IRQn);
 	NVIC_SetPriority(PIT_IRQn,2);
-	//(1) nastavte druhý kanál na periodu 2s
+	//(1) nastavte druhy kanal na periodu 2s
 	PIT->CHANNEL[1].LDVAL = 48000000ul;
 	PIT->CHANNEL[1].TCTRL |= PIT_TCTRL_TEN_MASK | PIT_TCTRL_TIE_MASK;
 	PIT->CHANNEL[1].TCTRL = ~PIT_TCTRL_CHN_MASK;
-	//(2) nastavte èas systicku na 0.5s
+	//(2) nastavte cas systicku na 0.5s
 //	SysTick->LOAD = 1500000 - 1u;
 //	SysTick->VAL = 0ul;
 //	SysTick->CTRL = SysTick_CTRL_ENABLE_Msk;
@@ -66,7 +67,7 @@ void PIT_IRQHandler()
 
 }
 
-//(2) vytvoøte handler pro pøerušení ze systicku a pøepínejte ledku 2
+//(2) vytvorte handler pro preruseni ze systicku a prepinejte ledku 2
 
 void SysTick_Handler()
 {
