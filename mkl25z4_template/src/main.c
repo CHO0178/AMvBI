@@ -12,7 +12,6 @@ __attribute__ ((weak)) int main(void)
 {
 	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
 
-	int a;
 	while (1) {
 		wdog_refresh();
 	}

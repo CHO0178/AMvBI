@@ -1,4 +1,4 @@
-#include <demo_STA048/CHO0178/littleHelper.h>
+#include <demo_CHO0178/littleHelper.h>
 #include "wdog.h"
 #include "MKL25Z4.h"
 
@@ -17,10 +17,10 @@ DAC
 	DAT0H
 		DATA1			higher data pro p�evod
 	C0
-		DACEN			povol� pou�it� 12bit DAC
+		DACEN			povoli pouziti 12bit DAC
 CMP
 	DACCR
-		DACEN			povol� nap�jen� vnit�n�ho DAC
+		DACEN			povoli napajeni vnitrniho DAC
 		VOSEL			voltage select
 	MUXCR
 		PSEL			multiplex to positive input of CMP
@@ -52,19 +52,19 @@ int main(void)
 	led_init();
 	setupNVICandPIT();
 
-	// povolte pou�it� 12bit DAC
+	// povolte pouziti 12bit DAC
 	DAC0->C0 = DAC_C0_DACEN_MASK;
 
-	// p�epn�te multiplex v periferii port tak, aby p�esm�roval sign�l z BNC konektoru J15 na v�stup periferie CMP0
+	// prepnete multiplex v periferii port tak, aby presmeroval signal z BNC konektoru J15 na vystup periferie CMP0
 	PORT_J15->PCR[IOIND_J15] = PORT_PCR_MUX(PORT_PCR_MUX_VAL_ALT6);
-	// p�epn�te multiplex v periferii port tak, aby p�esm�roval sign�l z v�stupu DAC na BNC konektor
-	// nastavte priferii CMP tak aby v�stupn� hodnota vosel byla 0x20u
+	// prepnete multiplex v periferii port tak, aby presmeroval signal z vystupu DAC na BNC konektor
+	// nastavte priferii CMP tak aby vystupni hodnota vosel byla 0x20u
 	CMP0->DACCR = CMP_DACCR_DACEN_MASK | CMP_DACCR_VOSEL(0x20u);
-	// nastavte vstupn� multiplexory na kladn� vstup periferii DAC0 a z�porn� vstup signal DAC periferie CMP
+	// nastavte vstupni multiplexory na kladny vstup periferii DAC0 a zaporny vstup signal DAC periferie CMP
 	CMP0->MUXCR = CMP_MUXCR_PSEL(4u) | CMP_MUXCR_MSEL(7u);
 	// povol flag raising v periferii CMP
 	CMP0->SCR = CMP_SCR_IER_MASK;
-	// povol v�stup a nap�jen� periferie CMP
+	// povol vystup a napajeni periferie CMP
 	CMP0->CR1 = CMP_CR1_OPE_MASK | CMP_CR1_EN_MASK;
 
 	while (1) {
@@ -104,10 +104,10 @@ void __attribute__ ((interrupt)) PIT_IRQHandler(void)
 
 void __attribute__ ((interrupt)) CMP0_IRQHandler(void)
 {
-	// prove�te vynulov�n� vyhozen�ho flagu (dejte si pozor aby jste nevynulovali povolen� flag�)
+	// provedte vynulovani vyhozeneho flagu (dejte si pozor aby jste nevynulovali povoleni flagu)
 	CMP0->SCR = CMP_SCR_IER_MASK | CMP_SCR_CFR_MASK;
 
-	// ��tej po�et vyvolan�ch interrupt� a ka�d� 50 vol�n� zv�t�i v�stup na diod� o 1
+	// citej pocet vyvolanych interruptu a kazdy 50 volany zvetsi vystup na diode o 1
 	cmp_expt_cnt++;
 	if (cmp_expt_cnt == CMP_EXPT_CNT_MOD) {
 		cmp_expt_cnt = 0;
