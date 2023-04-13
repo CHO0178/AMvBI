@@ -91,3 +91,14 @@ void cviceni3Loop()
 	heavyFunction();
 }
 
+void cviceni4Setup()
+{
+	//presmerujte signal z periferie GPIO na příslušný pin tlacitka
+	PORTA->PCR[4] = 1<<PORT_PCR_MUX_SHIFT;
+}
+
+void cviceni4Loop()
+{
+	//vlozte hodnotu z tlacitka na diodu
+	GPIOB->PDOR = (GPIOA->PDIR>>4)<<18;
+}

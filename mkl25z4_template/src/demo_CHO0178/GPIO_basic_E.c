@@ -1,5 +1,6 @@
 #include "MKL25Z4.h"
 #include "wdog.h"
+#include "littleHelper.h"
 
 /*
 
@@ -23,12 +24,14 @@ GPIO (CH41)
 
 void cviceni1Setup();
 void cviceni2Setup();
+void cviceni4Setup();
 void cviceni2Loop();
 void cviceni3Loop();
+void cviceni4Loop();
 
 int main(void)
 {
-	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
+	wdog_init(WDOG_CONF_DIS);
 
 	while (1) {
 		wdog_refresh();
@@ -49,9 +52,10 @@ void cviceni1Setup()
 
 void cviceni2Setup()
 {
-	// presmerujte signal z periferie GPIO na pin příslušný pin cervene a zelene diody
+	// presmerujte signal z periferie GPIO na příslušný pin cervene a zelene diody
 
 	// nastavte cervenou a zelenou diodu na vystup
+	//GPIOB->PDDR = (1<<18) | (1<<19);
 
 }
 void cviceni2Loop()
@@ -65,7 +69,7 @@ void cviceni2Loop()
 
 	// zamestnej procesor
 
-	// vypni cervenou diodu
+	// vypni zelenou diodu
 
 	// zamestnej procesor
 
@@ -74,4 +78,16 @@ void cviceni2Loop()
 void cviceni3Loop()
 {
 	// vytvor semafor:  R -> Y(red&green) -> G -> Y
+}
+
+void cviceni4Setup()
+{
+	//presmerujte signal z periferie GPIO na příslušný pin tlacitka
+
+}
+
+void cviceni4Loop()
+{
+	//vlozte hodnotu z tlacitka na diodu
+
 }
