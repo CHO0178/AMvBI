@@ -22,12 +22,12 @@ GPIO (CH41)
 	PDDR
 */
 
-void cviceni1Setup();
-void cviceni2Setup();
-void cviceni4Setup();
-void cviceni2Loop();
-void cviceni3Loop();
-void cviceni4Loop();
+void exercise1Setup();
+void exercise2Setup();
+void exercise4Setup();
+void exercise2Loop();
+void exercise3Loop();
+void exercise4Loop();
 
 int main(void)
 {
@@ -40,54 +40,70 @@ int main(void)
 	return 0;
 }
 
-void cviceni1Setup()
+void exercise1Setup()
 {
-	// presmerujte signal z periferie GPIO na prislusny pin cervene diody
+	// CZ: presmerujte signal z periferie GPIO na prislusny pin cervene diody
+	// EN: redirect signal from GPIO peripherals to pin associated with red part
+	//	   of RGB diode
 
-	// nastavte pin cervene led diody na output
+	// CZ: nastavte pin cervene led diody na output
+	// EN: setup pin of associated with red diode as output
 
-	// zapnete cervenou diodu
+	// CZ: zapnete cervenou diodu
+	// EN: turn on red diode
 
 }
 
-void cviceni2Setup()
+void exercise2Setup()
 {
 	// presmerujte signal z periferie GPIO na příslušný pin cervene a zelene diody
+	// EN: redirect signal from GPIO peripherals to pin associated with red and
+	//	   green part of RGB diode
 
 	// nastavte cervenou a zelenou diodu na vystup
-	//GPIOB->PDDR = (1<<18) | (1<<19);
+	// GPIOB->PDDR = (1<<18) | (1<<19);
 
 }
-void cviceni2Loop()
+void exercise2Loop()
 {
-	// blikejte stridave cervenou, zelenou a zadnou diodou
-	// zapni cervenou diodu
+	// CZ: blikejte stridave cervenou, zelenou a zadnou diodou
+	// EN: bling alternately red, green and none diode
+	// *******************************
+	// CZ: zapni cervenou diodu
+	// EN: turn on red diode
 
-	// zamestnej procesor
+	// CZ: zamestnej procesor
+	// EN: utilize processor
 
-	// zapni zelenou diodu a vypni cervenou
+	// CZ: zapni zelenou diodu a vypni cervenou
+	// EN: turn on greed diode and turn off red diode
 
-	// zamestnej procesor
+	// CZ: zamestnej procesor
+	// EN: utilize processor
 
-	// vypni zelenou diodu
+	// CZ: vypni zelenou diodu
+	// EN: turn off green diode
 
-	// zamestnej procesor
-
-}
-
-void cviceni3Loop()
-{
-	// vytvor semafor:  R -> Y(red&green) -> G -> Y
-}
-
-void cviceni4Setup()
-{
-	//presmerujte signal z periferie GPIO na příslušný pin tlacitka
+	// CZ: zamestnej procesor
+	// EN: utilize processor
 
 }
 
-void cviceni4Loop()
+void exercise3Loop()
 {
-	//vlozte hodnotu z tlacitka na diodu
+	// CZ: vytvor semafor:  R -> Y(red&green) -> G -> Y
+	// EN: create semaphor: R -> Y(red&green) -> G -> Y
+}
+
+void exercise4Setup()
+{
+	// CZ: presmerujte signal z periferie GPIO na příslušný pin tlacitka
+	// EN: redirect signal from GPIO peripherals to pin associated with button 1
+}
+
+void exercise4Loop()
+{
+	// CZ: vlozte hodnotu z tlacitka na diodu
+	// EN: move value of button input to diode output
 
 }
