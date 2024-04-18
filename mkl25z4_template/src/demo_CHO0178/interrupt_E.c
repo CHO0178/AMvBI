@@ -18,7 +18,7 @@ void nonBlockingFunctionExample();
 
 int main(void)
 {
-	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
+	wdog_init(WDOG_CONF_DIS);
 	led_init();
 	btn_init();
 
@@ -26,9 +26,8 @@ int main(void)
 	// EN: enable processing of incoming interrupt signal from port A and set
 	// priority 2
 
-	// CZ: povol generovani preruseni v periferii port A pro sestupnou i
-	// nastupnou hranu
-	// EN: enable generating interrupt signal in port A for falling and rising
+	// CZ: povol generovani preruseni v periferii port A pro sestupnou hranu
+	// EN: enable generating interrupt signal in port A for falling edge
 	// edge
 
 	while (1) {
