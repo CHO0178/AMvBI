@@ -1,5 +1,4 @@
 /*
-
 TPM(CH31)
 	SC
 	CNT
@@ -8,7 +7,6 @@ TPM(CH31)
 	CnV
 	STATUS
 	CONF
-
 */
 
 #include "soc_def.h"
@@ -21,24 +19,30 @@ TPM(CH31)
 
 void main()
 {
-	// nastavte mux pro výstup signálu na BNC konektor J12
+	// CZ: nastavte mux pro výstup signálu na BNC konektor J12
+	// EN: set multiplexer for output signal to BNC connector J12
 
-	// nastavte modulo hodnotu na PWM_PERIOD (kde vnikne problem?)
+	// CZ: nastavte modulo hodnotu na PWM_PERIOD (kde vnikne problem?)
+	// EN: set modulo value to PWM_PERIOD (where is problem?)
 
-	// nastavte typ signálu na Edge-aligned PWM, High-true pulses
+	// CZ: nastavte typ signálu na Edge-aligned PWM, High-true pulses
+	// EN: set signal type as Edge-aligned PWM , High-true pulses
 
-	// nastavte CMOD na 0b01 a delicku hodinoveho signalu na deleni dvemi (0b01)
-
+	// CZ: nastavte CMOD na (0b01) a delicku hodinoveho signalu na deleni dvemi (0b01)
+	// EN: set CMOD to (0b01) and clock signal divider to divide by two (0b01)
 
 	while(1)
 	{
 		uint16_t pot1Val = adc_bm_read(ADC_BM_MODE_8BIT_SE, ADC_CHAN_POT1);
-		// nastavte hodnotu chanel value na hodnoutu získanou z potenciometru (0-255)
+		// CZ: nastavte hodnotu chanel value na hodnoutu získanou z potenciometru (0-255)
+		// EN: set value of channel to value received from potentiometer (0-255)
 
 	}
 }
 
-	// otestujte a provedte zmenu pro opravu peaku na osciloskopu při zadani maximalni hodnoty
-
-	// pridejte dalsi potenciometr a kanal stejneho casovace otestujte vztahy
+	// CZ: otestujte a provedte zmenu pro opravu peaku na osciloskopu při zadani maximalni hodnoty
+	// EN: test and fix the peak shown on osciloscope for maximum input from
+	// CZ: pridejte dalsi potenciometr na jiný kanal stejneho casovace otestujte vztahy
 	// mezi kanaly pri pouziti ruznych nastaveni registru CnSC
+	// EN: connect another potentiometer to a different channel of the same
+	// timer and test their relationships configured in register CnSC
