@@ -9,16 +9,16 @@ void nonBlockingFunctionExample();
 
 int main(void)
 {
-	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
+	wdog_init(WDOG_CONF_DIS);
 	led_init();
 	btn_init();
 
 	// povol prijem preruseni pro port A a nastav prioritu na 2
 	NVIC_SetPriority(PORTA_IRQn,2);
 	NVIC_EnableIRQ(PORTA_IRQn);
-	// povol generovani preruseni v periferii portA pro sestupnou i nastupnou hranu
-	changeMultipleBitInRegister(PORTA->PCR[4],11u,PORT_PCR_IRQC_MASK,PORT_PCR_IRQC_SHIFT);
-	// alternative in initial state(IRQC = 0): PORTA->PCR[4] |= 0b1011 << PORT_PCR_IRQC_SHIFT;
+
+	// povol generovani preruseni v periferii portA pro sestupnou hranu
+	PORTA->PCR[4] |= 0b1010 << PORT_PCR_IRQC_SHIFT;
 
 	while (1) {
 		wdog_refresh();
@@ -54,7 +54,7 @@ void blockingFunctionExample()
 void nonBlockingFunctionExample()
 {
 	// pokud je tlacitko 2 sepnute rozsvit diodu 3
-	if(GPIOA->PDIR & (1<<4))
+	if(GPIOA->PDIR & (1<<5))
 	{
 		GPIOB->PDOR |= 1<<10;
 	}
