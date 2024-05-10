@@ -7,14 +7,14 @@
  * @version 1
  */
 /*
-
 ADC
 	CFG1
 		ADIV	// clk signal divider
 		MODE	// N-bit translation
 	SC1
-		ADCH	// channel select
+		ADCH	// channel select (trigger)
 		COCO	// complete conversion flag
+		DIFF	// differential mode of measurement
 	SC3
 		ADC0	// is continuous on one sample
 	R			// result
@@ -40,17 +40,17 @@ __attribute__ ((weak)) int main(void)
 {
 	wdog_init(WDOG_CONF_DIS);
 	led_init();
-	// CZ: nastavte ADC
-	// EN: initialize ADC
-
+	// CZ: zavolejte funkci pro nastaveni ADC
+	// EN: call initialize ADC
 	//startContinuousMeasuring(0b1100); // 0b1011  0b1100
-	setSingleTimeMeasurementOnTrigger();
+	//setSingleTimeMeasurementOnTrigger();
 
 
 	while (1) {
 		// CZ: ziskejte hodnotu z potenciometru a nastavte bargraf
 		// EN: get value from potentiometer and set bargraph to this value
-
+		//blockingMeasurementOfPotentiometer(1); //2
+		//nonBlockingSetOfLedBarGraphToValueFromADC();
 	}
 	return 0;
 }
@@ -58,20 +58,20 @@ __attribute__ ((weak)) int main(void)
 
 /**
  * @brief set ADC to continuous measuring and start measurement
- * @param channel value of channel connected to
- * potentiometer from refMan pg. 79
+ * @param channel value "ADC channel" of channel connected to
+ * potentiometer (refMan pg. 79)
  */
 void startContinuousMeasuring(uint32_t channel)
 {
-	// CZ: nastavte delicku hodinoveho signalu na 4 a 9-bitovou konverzi
-	// EN: set divider of signal source to divide by 4 and 9-bit conversion
+	// CZ: nastavte delicku hodinoveho signalu na 4 a 8-bitovou konverzi
+	// EN: set divider of signal source to divide by 4 and 8-bit conversion
 
 
 	// CZ: nastavte ADC na kontinualni mereni
 	// EN: set ADC continuous measurement
 
 
-	// CZ: trigrujte ADC kolnverzi na cahnnel
+	// CZ: trigrujte ADC kolnverzi zmennou kanalu
 	// EN: trigger ADC conversion at channel
 
 }
@@ -82,11 +82,11 @@ void startContinuousMeasuring(uint32_t channel)
  */
 void setSingleTimeMeasurementOnTrigger()
 {
-	// CZ: nastavte delicku hodinoveho signalu na 4 a 9-bitovou konverzi
-	// EN: set divider of signal source to divide by 4 and 9-bit conversion
+	// CZ: nastavte delicku hodinoveho signalu na 4 a 8-bitovou konverzi
+	// EN: set divider of signal source to divide by 4 and 8-bit conversion
 
 
-	// CZ: nastavte
+	// CZ: nastavte mereni na kontinnualni
 	// EN: set measurement to continuous measurement
 
 }
@@ -119,18 +119,24 @@ int blockingMeasurementOfPotentiometer(int pot)
 			return -1;
 			break;
 	}
-	// CZ: vyckejte na dokonceni konverze a zvednuti priznaku
+	// CZ: vyckejte na dokonceni konverze a zvednuti priznaku preruseni
 	// EN: wait for complete conversion flag to rise to rise
 
 
-	return ???;
+	return 0;
 }
 
+/**
+ * @brief measure value of potentiometer and set diodes according this value
+ */
 void nonBlockingSetOfLedBarGraphToValueFromADC()
 {
 	// CZ: pote co je dokoncen prevod analogu na digital
-	// nastavte bargraf podle prellozene hodnoty
+	// nastavte bargraf podle prelozene hodnoty
 	// EN: if conversion is complete set the bar graph
 	// regarding received value
 
 }
+
+
+
