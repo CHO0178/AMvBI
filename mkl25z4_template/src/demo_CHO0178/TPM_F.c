@@ -9,6 +9,11 @@ TPM(CH31)
 	STATUS
 	CONF
 
+
+Reset clears the CNT register. Writing any value to COUNT also clears the counter.
+(str. 553)
+
+diagram (str. 549)
 */
 
 #include "soc_def.h"

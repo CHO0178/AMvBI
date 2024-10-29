@@ -21,22 +21,24 @@ void main()
 {
 	// CZ: nastavte mux pro výstup signálu na BNC konektor J12
 	// EN: set multiplexer for output signal to BNC connector J12
-
+	PORTE->PCR[29]|= 3<<8;
 	// CZ: nastavte modulo hodnotu na PWM_PERIOD (kde vnikne problem?)
 	// EN: set modulo value to PWM_PERIOD (where is problem?)
-
-	// CZ: nastavte typ signálu na Edge-aligned PWM, High-true pulses
+	TPM0->MOD = PWM_PERIOD-1;
+	// CZ: nastavte typ signálu na Edge-aligned PWM, High-true pulses na příslušném kanálu
 	// EN: set signal type as Edge-aligned PWM , High-true pulses
-
+	TPM0->CONTROLS[2].CnSC |= 0b1010 << 2;
 	// CZ: nastavte CMOD na (0b01) a delicku hodinoveho signalu na deleni dvemi (0b01)
 	// EN: set CMOD to (0b01) and clock signal divider to divide by two (0b01)
-
+	TPM0->SC |= 0b01 << 3 | 0b01;
+	//TPM0->SC |= 0b01;
 	while(1)
 	{
 		uint16_t pot1Val = adc_bm_read(ADC_BM_MODE_8BIT_SE, ADC_CHAN_POT1);
+		uint16_t pot2Val = adc_bm_read(ADC_BM_MODE_8BIT_SE, ADC_CHAN_POT2);
 		// CZ: nastavte hodnotu chanel value na hodnoutu získanou z potenciometru (0-255)
 		// EN: set value of channel to value received from potentiometer (0-255)
-
+		TPM0->CONTROLS[2].CnV = pot1Val;
 	}
 }
 
