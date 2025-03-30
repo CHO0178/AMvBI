@@ -12,7 +12,7 @@ LPTMR(CH33)
 		PCS			// zdroj hodinoveho signalu
 					// pg.90
 	CMR				// compare
-	CNR				// counter
+	CNR				// counter modulo
 
 PORT
 	PCR
@@ -33,7 +33,7 @@ int main(void)
 {
 	static uint8_t swCounter = 0u;
 
-	wdog_init(WDOG_CONF_LPOCLK_1024_CYCLES);
+	wdog_init(WDOG_CONF_DIS);  // <-- must be disabled
 
 	led_init();
 	setupTimerFor1sDelay();

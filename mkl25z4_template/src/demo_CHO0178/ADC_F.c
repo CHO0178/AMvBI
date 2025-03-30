@@ -8,7 +8,7 @@
  */
 /*
 
-ADC
+ADC(ch.28)
 	CFG1
 		ADIV	// clk signal divider
 		MODE	// N-bit translation
@@ -43,7 +43,7 @@ __attribute__ ((weak)) int main(void)
 	// CZ: nastavte ADC
 	// EN: initialize ADC
 
-	//startContinuousMeasuring(0b1100); // 0b1011  0b1100
+	startContinuousMeasuring(0b1100); // 0b1011  0b1100
 	setSingleTimeMeasurementOnTrigger();
 
 

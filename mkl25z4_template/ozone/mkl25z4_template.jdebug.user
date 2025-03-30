@@ -1,14 +1,19 @@
 
 
-OpenDocument="wdog.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/_syst/wdog.c", Line=30
-OpenDocument="GPIO_basic_F.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/GPIO_basic_F.c", Line=28
-OpenDocument="led.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/_board/led.c", Line=73
-OpenDocument="interrupt_E.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/interrupt_E.c", Line=0
+OpenDocument="uart_irq_recv_send.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo/uart/uart_irq_recv_send.c", Line=48
+OpenDocument="UART_F.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/UART_F.c", Line=44
+OpenDocument="main.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/main.c", Line=73
+OpenDocument="LPTMR_F.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/LPTMR_F.c", Line=0
+OpenDocument="wdog.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/_syst/wdog.c", Line=10
+OpenDocument="ADC_E.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/ADC_E.c", Line=66
+OpenDocument="interrupt_E.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/interrupt_E.c", Line=38
+OpenDocument="GPIO_basic_E.c", FilePath="C:/Users/cho0178/git/AMvBI/mkl25z4_template/src/demo_CHO0178/GPIO_basic_E.c", Line=51
 OpenToolbar="Debug", Floating=0, x=0, y=0
 OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=0, w=534, h=592, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
-OpenWindow="Memory 1", DockArea=BOTTOM, x=1, y=0, w=963, h=326, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x4004A000
-OpenWindow="Functions", DockArea=LEFT, x=0, y=0, w=300, h=592, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
-OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=956, h=326, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Memory 1", DockArea=BOTTOM, x=1, y=0, w=736, h=326, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x4004A000
+OpenWindow="Functions", DockArea=LEFT, x=0, y=1, w=352, h=311, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Memory Usage", DockArea=LEFT, x=0, y=0, w=352, h=280, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Console", DockArea=BOTTOM, x=0, y=0, w=1183, h=326, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
 SmartViewPlugin="", Page="", Toolbar="Hidden", Window="SmartView 1"
 TableHeader="Functions", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Address";"Size";"#Insts";"Source"], ColWidths=[189;100;100;100;231]
 TableHeader="Power Sampling", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]

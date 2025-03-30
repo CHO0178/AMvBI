@@ -18,7 +18,7 @@
 
 #define DAC0_DAT0			(*((volatile uint16_t *) 0x4003F000ul))
 
-uint16_t sin_lut_ind;
+uint16_t sin_lut_ind=0;
 const uint16_t sin_lut[SIN_LUT_DATA_LEN] = {SIN_LUT_DATA};
 
 void __attribute__ ((interrupt)) PIT_IRQHandler(void)
@@ -28,7 +28,7 @@ void __attribute__ ((interrupt)) PIT_IRQHandler(void)
 	DAC0_DAT0 = sin_lut[sin_lut_ind];
 
 	sin_lut_ind++;
-	if (sin_lut_ind == SIN_LUT_DATA_LEN) {
+	if (sin_lut_ind >= SIN_LUT_DATA_LEN) {
 		sin_lut_ind = 0;
 	}
 }

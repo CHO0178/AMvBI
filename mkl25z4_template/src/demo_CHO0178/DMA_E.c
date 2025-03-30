@@ -19,7 +19,7 @@ int main(void)
 	// ADC - chapter 28
 	// v analog to digital prevodniku nastavte divideRatio (ADIV = 2) na inputClock/4 a 12-bitovou konverzi(mode = 1)//(CFG1)
 
-	// nastavte v ADC zvolte conversion triger na Hardware trigger(ADTRG = 1) a povolte generování DMA requestu (DMAEN = 1)//(SC2)
+	// nastavte v ADC zvolte conversion triger na Hardware trigger(ADTRG = 1) a povolte generovani DMA requestu (DMAEN = 1)//(SC2)
 
 	// povolte generovani interuptu(AIEN = 1) a zvoleni vstupu AD4 (ADCH = 4)//(SC1)
 
