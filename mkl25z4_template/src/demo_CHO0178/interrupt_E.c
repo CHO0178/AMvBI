@@ -4,8 +4,34 @@
 #include "led.h"
 #include "btn.h"
 
+/*
+pinout(str. 161)
 
+PORT (CH11)
+	PCR[32]
+		ISF
+		IRQC
+		MUX
+	ISFR
 
+GPIO (CH41)
+	PDOR
+*/
+
+/*
+CZ: postupne spoustejte funkce z main nebo z handleru dle postupu
+EN: sequentially execute functions from main or from the handler according to the procedure
+
+// Blocking function = B
+// Non blocking function = NB
+
+1) main: B,NB	handler: -
+2) main: NB		handler: B
+3) main: -		handler: B,NB
+4) main: NB		handler: B
+5)	CZ: pouzijte spravnou variantu a upravte kod tak, aby fungoval bez pouziti tlacitka 1
+	EN: use the correct variant and modify the code to work without using button 1
+*/
 
 void blockingFunctionExample();
 void nonBlockingFunctionExample();
@@ -54,13 +80,13 @@ void PORTA_IRQHandler(void)
 void blockingFunctionExample()
 {
 	//wait
-	for(int i = 0;i<2000000;i++){}
+	heavyFunction();
 
 	// CZ: zapni diodu 1 a vypni diodu 2
 	// EN: turn on diode 1 and turn off diode 2
 
 	//wait
-	for(int i = 0;i<2000000;i++){}
+	heavyFunction();
 
 	// CZ: zapni diodu 2 a vypni diodu 1
 	// EN: turn on diode 2 and turn off diode 1
