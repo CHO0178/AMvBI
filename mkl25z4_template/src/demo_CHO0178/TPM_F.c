@@ -1,5 +1,4 @@
 /*
-
 TPM(CH31)
 	SC
 	CNT
@@ -8,12 +7,6 @@ TPM(CH31)
 	CnV
 	STATUS
 	CONF
-
-
-Reset clears the CNT register. Writing any value to COUNT also clears the counter.
-(str. 553)
-
-diagram (str. 549)
 */
 
 #include "soc_def.h"
@@ -26,24 +19,34 @@ diagram (str. 549)
 
 void main()
 {
-	// nastavte mux pro výstup signálu na BNC konektor J12
-	PORT_J12->PCR[IOIND_J12] = PORT_PCR_MUX(PORT_PCR_MUX_VAL_ALT3);
-
-	// nastavte modulo hodnotu na PWM_PERIOD (kde vnikne problem?)
-	TPM0->MOD = PWM_PERIOD - 1u;
-
-	// nastavte typ signálu na Edge-aligned PWM, High-true pulses
-	TPM0->CONTROLS[TPMCH_J12].CnSC = TPM_CnSC_MSB_MASK | TPM_CnSC_ELSB_MASK;
-
-	// nastavte CMOD na 0b01 a delicku hodinoveho signalu na deleni dvemi (0b01)
-	TPM0->SC = TPM_SC_CMOD(TPM_SC_CMOD_VAL_INTCLK) | TPM_SC_PS(TPM_SC_PS_VAL_D2);
-
-
-
+	// CZ: nastavte mux pro výstup signálu na BNC konektor J12
+	// EN: set multiplexer for output signal to BNC connector J12
+	PORTE->PCR[29] |= 3<<8;
+	PORTE->PCR[30] |= 3<<8;
+	// CZ: nastavte modulo hodnotu na PWM_PERIOD (kde vnikne problem?)
+	// EN: set modulo value to PWM_PERIOD (where is problem?)
+	TPM0->MOD = PWM_PERIOD -1;
+	// CZ: nastavte typ signálu na Edge-aligned PWM, High-true pulses na příslušném kanálu
+	// EN: set signal type as Edge-aligned PWM , High-true pulses
+	TPM0->CONTROLS[2].CnSC |= 0b1010 << 2;
+	TPM0->CONTROLS[3].CnSC |= 0b1011 << 2;
+	// CZ: nastavte CMOD na (0b01) a delicku hodinoveho signalu na deleni dvemi (0b01)
+	// EN: set CMOD to (0b01) and clock signal divider to divide by two (0b01)
+	TPM0->SC |= 0b01001;
 	while(1)
 	{
 		uint16_t pot1Val = adc_bm_read(ADC_BM_MODE_8BIT_SE, ADC_CHAN_POT1);
-		// nastavte hodnotu chanel value na hodnoutu získanou z potenciometru (0-255)
-		TPM0->CONTROLS[TPMCH_J12].CnV = pot1Val;
+		uint16_t pot2Val = adc_bm_read(ADC_BM_MODE_8BIT_SE, ADC_CHAN_POT2);
+		// CZ: nastavte hodnotu chanel value na hodnoutu získanou z potenciometru (0-255)
+		// EN: set value of channel to value received from potentiometer (0-255)
+		TPM0->CONTROLS[2].CnV = pot1Val;
+		TPM0->CONTROLS[3].CnV = pot2Val;
 	}
 }
+
+	// CZ: otestujte a provedte zmenu pro opravu peaku na osciloskopu při zadani maximalni hodnoty
+	// EN: test and fix the peak shown on osciloscope for maximum input from
+	// CZ: pridejte dalsi potenciometr na jiný kanal stejneho casovace otestujte vztahy
+	// mezi kanaly pri pouziti ruznych nastaveni registru CnSC
+	// EN: connect another potentiometer to a different channel of the same
+	// timer and test their relationships configured in register CnSC
