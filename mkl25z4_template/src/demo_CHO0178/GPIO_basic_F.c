@@ -44,7 +44,7 @@ int main(void)
 {
 	wdog_init(WDOG_CONF_DIS);
 
-	cviceni1Setup();
+	exercise1Setup();
 
 	while (1) {
 		wdog_refresh();
