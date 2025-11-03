@@ -16,7 +16,7 @@ ADC
 		COCO	// complete conversion flag
 		DIFF	// differential mode of measurement
 	SC3
-		ADCO	// is continuous on one sample
+		ADCO	// is continuous or one sample
 	R			// result
 
 PORT
@@ -80,10 +80,9 @@ void setSingleTimeMeasurementOnTrigger()
 	// CZ: nastavte delicku hodinoveho signalu na 4 a 8-bitovou konverzi
 	// EN: set divider of signal source to divide by 4 and 8-bit conversion
 
-
-	// CZ: nastavte mereni na kontinnualni
-	// EN: set measurement to continuous measurement
-
+	// CZ: nastavte mereni na vzorkovani jednou
+	// EN: set measurement to sample once
+	
 }
 
 /**
@@ -179,8 +178,8 @@ void exercise3(){
 
 
 	while (1) {
-		// CZ: ziskejte hodnotu z potenciometru a nastavte bargraf
-		// EN: get value from potentiometer and set bargraph to this value
+		// CZ: ziskejte hodnotu z obou potenciometru a nastavte bargraf
+		// EN: get value from both potentiometer and set bargraph to this value
 
 	}
 }
